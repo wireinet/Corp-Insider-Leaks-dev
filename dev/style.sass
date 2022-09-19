@@ -145,6 +145,8 @@ $logo-size: 400px
         top: -102px
         left: -240px
         z-index: 0
+        @media screen and (min-width:1140px)
+            left: -13%
         @media screen and ( max-width: 1370px )
             background-size: 1500px
             left: -25%
@@ -211,6 +213,8 @@ $logo-size: 400px
     @media screen and (max-width:870px)
         grid-template-columns: $itemW
         grid-auto-rows: auto
+    @media screen and (min-width:1140px)
+        justify-content: center
 
 
 .block__item 
@@ -218,6 +222,9 @@ $logo-size: 400px
     background-size: contain
     background-position: center
     background-repeat: no-repeat
+    background-image: url(../images/item-screen-uncabled.webp)
+    &.additions
+        display: none
     &:nth-child(1)
         background-image: url(../images/item-screen-1.webp)
     &:nth-child(2)
@@ -328,7 +335,7 @@ taxonomy
     display: block
     color: $bright
     @extend %glow
-    font-size: 1.3em
+    font-size: 0.8em
     font-family: 'Digital'
     background-image: url(../images/symbol-block-black.webp)
     margin-bottom: 10px
@@ -372,7 +379,7 @@ taxonomy
     display: inline-block
     color: $gray
     font-family: 'Digital'
-    font-size: 1.6em
+    font-size: 1.1em
     @extend %transition
     filter: drop-shadow(0, 0, 20px, green)
     position: relative
@@ -391,9 +398,11 @@ taxonomy
 .processor__images
     position: relative
     margin: 0 auto
-    width: 350px
+    width: 262px
     height: 100%
-    min-height: 262px
+    img
+        top: -39px 
+        bottom:20px
     @media screen and ( max-width: 570px )
         width: 260px
 
