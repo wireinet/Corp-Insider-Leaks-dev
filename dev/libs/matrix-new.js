@@ -2,14 +2,12 @@
         var c = document.getElementById("c");
         var ctx = c.getContext("2d");
 
-
-        
         windowWidth = document.documentElement.clientWidth;
         windowHeight = document.documentElement.clientHeight;
         
         //making the canvas full screen
-        c.height = windowHeight;
-        c.style.height = windowHeight;
+        c.height = bodyHeight;
+        c.style.height = bodyHeight;
         c.width = windowWidth;
         c.style.width = windowWidth;
         //если меняется ширина при повороте экрана
@@ -18,7 +16,7 @@
         windowHeight = document.documentElement.clientHeight;
         
         //making the canvas full screen
-        c.height = windowHeight;
+        c.height = bodyHeight;
         c.width = windowWidth;
 }, false);    
         //chinese characters - taken from the unicode charset

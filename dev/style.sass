@@ -146,7 +146,7 @@ $logo-size: 400px
         left: -240px
         z-index: 0
         @media screen and (min-width:1140px)
-            left: -13%
+            left: -19%
         @media screen and ( max-width: 1370px )
             background-size: 1500px
             left: -25%
@@ -223,23 +223,95 @@ $logo-size: 400px
     background-position: center
     background-repeat: no-repeat
     background-image: url(../images/item-screen-uncabled.webp)
-    &.additions
-        display: none
+    position: relative
+    // INDICATOR
+    &::after
+        content: ""
+        position: absolute
+        left: 65px
+        bottom: 20px
+        height: 9px
+        width: 67px
+        z-index: 50
+        background-size: 98% auto !important
+        filter: drop-shadow(0 0 2px green)
+    // UPLOADED
+    &.uploaded
+        &::before
+            content: ""
+            position: absolute
+            background: red
+            right: 26px
+            top: 10px
+            height: 30px
+            width: 87px
+            z-index: 50
+            background-size: contain !important
+            filter: drop-shadow(0 0 2px red)
+    &.uploaded--0
+        &::before
+            background: url(../images/item-indicator-red-4.webp)no-repeat
+    &.uploaded--1
+        &::before
+            background: url(../images/item-indicator-red-3.webp)no-repeat
+    &.uploaded--2
+        &::before
+            background: url(../images/item-indicator-red-2.webp)no-repeat
+    &.uploaded--3
+        &::before
+            background: url(../images/item-indicator-red-1.webp)no-repeat
+    &.uploaded--4
+        &::before
+            background: transparent
+
+    // @keyframes active-dot-appear
+    //     0%
+    //         opacity: 0
+    //         background: transparent
+    //     100%
+    //         opacity: 1
+    //         background: url(../images/dots.gif)no-repeat
+            
     &:nth-child(1)
         background-image: url(../images/item-screen-1.webp)
+        &::after
+            left: 66px
+            background: url(../images/dot-1.gif)no-repeat
     &:nth-child(2)
         background-image: url(../images/item-screen-2.webp)
+        &::after
+            width: 67px
+            height: 8px
+            background: url(../images/dot-2.gif)no-repeat
     &:nth-child(3)
         background-image: url(../images/item-screen-3.webp)
+        &::after
+            width: 68px
+            height: 8px
+            background: url(../images/dot-3.gif)no-repeat
     &:nth-child(4)
         background-image: url(../images/item-screen-4.webp)
+        &::after
+            width: 67px
+            height: 7px
+            background: url(../images/dot-4.gif)no-repeat
     &:nth-child(5)
         background-image: url(../images/item-screen-5.webp)
+        &::after
+            width: 68px
+            height: 7px
+            background: url(../images/dot-5.gif)no-repeat
     &:nth-child(6)
         background-image: url(../images/item-screen-6.webp)
+        &::after
+            width: 67px
+            height: 7px
+            background: url(../images/dot-6.gif)no-repeat
+
     @media screen and ( max-width: 870px )
         background-image: url(../images/item-screen-uncabled.webp)!important
     
+
 .pagination__list
     display: flex
     align-items: center
@@ -268,6 +340,7 @@ $logo-size: 400px
         background-image: url(../images/symbol-block-l.webp)
         background-repeat: no-repeat
         background-size: contain
+        height: 36px
         @media screen and ( max-width: 570px )
             height: 42px
             
@@ -424,13 +497,12 @@ taxonomy
 
 //POST
 .post
-    // background: #ff000080
     padding: 47px
     display: grid
     align-items: start
-    grid-template-columns: 1fr 40%
+    grid-template-columns: 1fr 50%
     position: relative
-    bottom: 3px
+    bottom: 4px
     &::after
         @extend %transition
         @extend %pseudo-symbols
@@ -464,12 +536,15 @@ taxonomy
         //     opacity: 0
 
 .post__thumbnail
-    max-width: 120px
+    width: 100%
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: center
     img
-        width: 100%
-        height: 100%
-        object-fit: contain
-        margin-bottom: 5px
+        width: 90%
+        height: 90%
+        object-fit: cover
     span
         color: white
         text-decoration: underline
@@ -487,8 +562,6 @@ taxonomy
 .post__data
     padding: 5px 10px 5px 5px
     z-index: 2
-.post__info
-    padding: 0 10px
 
 .post__date
     color: $gray
