@@ -76,16 +76,14 @@ body
         left: 0
         width: 100%
         height: 45%
-        @media screen and ( max-width: 1000px )
-            @include bgimage()
-            background-size: cover
-            z-index: -1
             
 
 section
     padding: 60px
     max-width: $wide
     margin: 0 auto
+    @media screen and ( max-width: 1000px )
+        padding: 20px
 
 $logo-size: 400px   
 .logo
@@ -102,28 +100,32 @@ $logo-size: 400px
         mix-blend-mode: plus-lighter
         @media screen and (max-width: 570px)
         width: 100%
-        // &.logo-over
-        //     position: absolute
-        //     right: calc(($logo-size / 2) - 15px) 
-        //     top: auto
-        //     mix-blend-mode: multiply !important
-        //     text-align: center
+        opacity: 0.8
 
-.separator 
-    background: black url(../images/separator.webp)
-    background-repeat: repeat-x
-    background-size: contain
-    background-position: center
-    height: 30px
+// .separator 
+//     background: black url(../images/separator.webp)
+//     background-repeat: repeat-x
+//     background-size: contain
+//     background-position: center
+//     height: 30px
+//     width: 100%
+//     position: relative
+//     z-index:2
+
+.line-post
+    height: 60px
     width: 100%
-    position: relative
-    z-index:2
+    background-image: url(../images/line-post-header.webp)
+    background-repeat: no-repeat
+    background-position: top
+    background-size: cover
 
 .content
     margin: 0 auto
     height: auto
     @media screen and ( min-width: 1000px )
         @include bgimage()
+        background-size: 1575px
 
 .content__posts
     display: flex
@@ -133,54 +135,80 @@ $logo-size: 400px
     background-size: cover
     background-repeat: no-repeat
     position: relative
-    z-index: 1
+    z-index: 2
+    @media screen and ( min-width: 870px )
     &::before
         @extend %pseudo-symbols
         width: 1200px
-        height: 500px
+        height: 100%
         background-image: url(../images/microchip.webp)
-        background-size: 1133px
+        background-size: 1186px
         background-repeat: no-repeat
-        background-position: 58px
-        top: -102px
-        left: -240px
+        background-position: right center
         z-index: 0
-        @media screen and (min-width:1140px)
-            left: -19%
-        @media screen and ( max-width: 1370px )
-            background-size: 1500px
-            left: -25%
-            width: 150%
-            height: 100%
-            background-image: url(../images/microchip.webp)
-            background-position: center
+        left: 8%
+        opacity: 0.5
         @media screen and ( max-width: 870px )
-            background-size: 800px
-            background-position: center top
-            background-repeat: repeat-y
-            
+            background-size: 80%
+            top: -10%
+            left: -50px
+            width: 100%
+            height: 100%
+            background-image: url(../images/microchip-mob.webp)
+            background-position: center
+            opacity: 0.7
+        @media screen and ( max-width: 600px )
+            background-size: 100%
+            top: 5%
+            left: -103px
+            width: 118%
+            height: 100%
+            background-image: url(../images/microchip-mob.webp)
+            background-position: center
+            opacity: 0.7   
     &::after
         @extend %pseudo-symbols
         width: 1000px
         height: 800px
         background-color: black
-        top: -100px
+        top: -46px
         right: -125px
         z-index: -1
-        filter: blur(100px)
+        filter: blur(58px)
+        @media screen and ( max-width: 870px )
+            height: 100%
             
 .content__img
     display: flex
     align-items: flex-end
     justify-content: center
     position: relative
-    z-index:2
+    z-index:1
+    @media screen and (max-width: 1370px)
+        margin-bottom: 150px
+    &::after
+        @extend %pseudo-symbols    
+        background: url(../images/wires.webp)
+        background-position: bottom
+        background-repeat: no-repeat
+        left: 60%
+        width: 500px
+        z-index: -1
+        @media screen and (max-width: 1370px)
+            background: url(../images/wires-mob.webp)
+            left: 0
+            height: 100%
+            top: 273px
+            background-repeat: no-repeat
+            background-size: 225px
+            width: 100%
+            background-position: center bottom
+
     @media screen and (max-width: 570px)
         width: 100%
     img
         width: 100%
         max-width: 500px
-        mix-blend-mode: screen
         @media screen and (max-width: 570px)
             width: 80%
 
@@ -216,13 +244,12 @@ $logo-size: 400px
     @media screen and (min-width:1140px)
         justify-content: center
 
-
 .block__item 
     min-height: 150px
     background-size: contain
     background-position: center
     background-repeat: no-repeat
-    background-image: url(../images/item-screen-uncabled.webp)
+    background-image: url(../images/item-screen-uncabled-none.webp)
     position: relative
     // INDICATOR
     &::after
@@ -277,39 +304,58 @@ $logo-size: 400px
         &::after
             left: 66px
             background: url(../images/dot-1.gif)no-repeat
+            @media screen and (max-width:870px)
+                left: 65px
+                bottom: 18px
     &:nth-child(2)
         background-image: url(../images/item-screen-2.webp)
         &::after
             width: 67px
             height: 8px
             background: url(../images/dot-2.gif)no-repeat
+            @media screen and (max-width:870px)
+                bottom: 19px
     &:nth-child(3)
         background-image: url(../images/item-screen-3.webp)
+        background-size: 101%
         &::after
             width: 68px
             height: 8px
+            bottom: 19px
             background: url(../images/dot-3.gif)no-repeat
+            @media screen and (max-width:870px)
+                bottom: 19px
+                left: 63px
     &:nth-child(4)
         background-image: url(../images/item-screen-4.webp)
         &::after
             width: 67px
             height: 7px
             background: url(../images/dot-4.gif)no-repeat
+            @media screen and (max-width:870px)
+                bottom: 22px
     &:nth-child(5)
         background-image: url(../images/item-screen-5.webp)
+        background-position-x: 1px
         &::after
             width: 68px
             height: 7px
+            left: 67px
             background: url(../images/dot-5.gif)no-repeat
+            @media screen and (max-width:870px)
+                height: 9px
+                left: 66px
     &:nth-child(6)
         background-image: url(../images/item-screen-6.webp)
         &::after
             width: 67px
             height: 7px
             background: url(../images/dot-6.gif)no-repeat
+            @media screen and (max-width:870px)
+                height: 9px
 
     @media screen and ( max-width: 870px )
-        background-image: url(../images/item-screen-uncabled.webp)!important
+        background-image: url(../images/item-screen-uncabled-none.webp)!important
     
 
 .pagination__list
@@ -464,6 +510,7 @@ taxonomy
 
 .processor
     display: flex
+    height: 233px
     align-items: center
     justify-content: center
     flex: 1 1 auto
@@ -502,7 +549,12 @@ taxonomy
     align-items: start
     grid-template-columns: 1fr 50%
     position: relative
-    bottom: 4px
+    bottom: 6px
+    p
+        font-size: 11px
+        font-family: 'Verdana', monospace
+        line-height: 120%
+        
     &::after
         @extend %transition
         @extend %pseudo-symbols
@@ -557,7 +609,7 @@ taxonomy
 .post > *
     color: white
     line-height: 100%
-    font-family: 'VT323', monospace
+    // font-family: 'VT323', monospace
 
 .post__data
     padding: 5px 10px 5px 5px
@@ -566,6 +618,7 @@ taxonomy
 .post__date
     color: $gray
     font-size: 13px
+    margin-bottom: 4px
 
 .post__name
     font-size: 18px
@@ -573,28 +626,35 @@ taxonomy
     color: white
     display: block
 
-.upload
-    width: 100%
-    height: 4px
-    background-color: #696969
-    position: relative
-    margin-bottom: 2px
+.post__info
+    p
+        &:first-child
+            margin-bottom: 2px
+// .upload
+//     width: 100%
+//     height: 4px
+//     background-color: #696969
+//     position: relative
+//     margin-bottom: 2px
     
-.upload__value
-    position: absolute
-    left: 0
-    top: 0
-    width: 46%
-    height: 4px
-    background-color: #b9b9b9
+// .upload__value
+//     position: absolute
+//     left: 0
+//     top: 0
+//     width: 46%
+//     height: 4px
+//     background-color: #b9b9b9
 
 .upload__stat
     margin-bottom: 16px
     line-height: 80%
     p
+        &:first-child
+            margin-bottom: 4px
         span
             color: $gray
-            font-size: 13px
+            font-size: 11px
+            line-height: 120%
             
 // MATRIX
 #c 
