@@ -27,6 +27,7 @@ a
     background-position: center bottom
 
 ::selection
+    color: #50ff3b
     background: green
 
 $p-m: 60px
@@ -48,6 +49,18 @@ body
     margin: 0 auto
     background: black
     height: 100%
+
+hr
+    border: none
+    border-bottom: 2px solid green
+    margin: 20px auto
+
+h2 
+    font-weight: 400
+    margin-bottom: 10px
+
+p
+    line-height: 1.2
 
 // PLACEHOLDERS
 %transition
@@ -96,6 +109,7 @@ $logo-size: 400px
     @media screen and (max-width: 570px)
         width: 80%
     img
+        pointer-events: none
         width: $logo-size
         mix-blend-mode: plus-lighter
         @media screen and (max-width: 570px)
@@ -113,12 +127,13 @@ $logo-size: 400px
 //     z-index:2
 
 .line-post
-    height: 60px
+    height: 120px
     width: 100%
     background-image: url(../images/line-post-header.webp)
     background-repeat: no-repeat
     background-position: top
     background-size: cover
+    position: absolute
 
 .content
     margin: 0 auto
@@ -136,6 +151,7 @@ $logo-size: 400px
     background-repeat: no-repeat
     position: relative
     z-index: 2
+    transition: opacity 1s ease-in-out
     @media screen and ( min-width: 870px )
     &::before
         @extend %pseudo-symbols
@@ -187,11 +203,13 @@ $logo-size: 400px
     @media screen and (max-width: 1370px)
         margin-bottom: 150px
     &::after
+        transition: all 1s ease-in-out
         @extend %pseudo-symbols    
-        background: url(../images/wires.webp)
+        background: url(../images/wires-anim.gif)
         background-position: bottom
         background-repeat: no-repeat
         left: 60%
+        top: -30px
         width: 500px
         z-index: -1
         @media screen and (max-width: 1370px)
@@ -203,14 +221,30 @@ $logo-size: 400px
             background-size: 225px
             width: 100%
             background-position: center bottom
-
+    &.disconnect
+        &::after
+            animation: disconnect 2s ease-in-out forwards
+            transition: all 2s ease-in-out
+            transform-origin: 0 100%
     @media screen and (max-width: 570px)
         width: 100%
     img
+        pointer-events: none
         width: 100%
         max-width: 500px
         @media screen and (max-width: 570px)
             width: 80%
+
+@keyframes disconnect
+    0%
+        background-image: url(../images/wires-anim.gif)
+        transform: translateX(0)
+    50%
+        background-image: url(../images/wires.webp)
+        transform: translateX(-50px) 
+    100%
+        transform: translateX(0)
+        background-image: url(../images/wires-anim.gif)
 
 .content__info 
     display: grid
@@ -222,13 +256,57 @@ $logo-size: 400px
         gap: 20px
     @media screen and ( min-width: 1441px )
         max-width: 1800px
+        min-height: 890px
     @media screen and ( max-width: 1370px )
         grid-template-columns: 1fr
         justify-content: center
 
+$single-post-w-desktop: 756px
+$single-post-h-desktop: 870px
+$single-post-w-mobile: 756px
+// OPEN SINGLE POST
+.single
+    & p
+        font-size: 12px
+        margin-bottom: 10px
+    & .block__list
+        display: none
+    & .pagination
+        display: none
+    & .line-post
+        display: none
+    & .single__post
+        transition: transform 2s ease-in-out, opacity 1s ease
+        transform: scale(1)
+        opacity: 1
+        display: block
+    & .single__block
+        transition: transform 2s ease-in-out, opacity 1s ease
+        transform: scale(1)
+        opacity: 1
+        position: relative
+    & table
+        width: 100%
+        border-collapse: collapse
+        margin-bottom: 20px
+        td
+            font-size: 12px
+            border: 4px solid $green
+            padding: 6px 4px
+
+.content__posts
+    &.single
+        &::after
+            transition: opacity 0.5s ease-in-out
+            opacity: 0
+        &::before
+            transition: opacity 0.5s ease-in-out
+            opacity: 0
+
+/// OPEN SINGLE POST
 .block__list
     width: 100%
-    margin: 0 auto
+    margin: 40px auto 0 auto
     display: grid
     grid-template-rows: $itemH $itemH $itemH
     grid-template-columns: $itemW $itemW
@@ -236,6 +314,13 @@ $logo-size: 400px
     margin-bottom: 40px
     position: relative
     z-index: 1
+    transition: transform 1s ease-in-out, opacity 1s ease
+    &.faded-posts
+        animation: fadeposts 1s ease-in-out forwards
+        transition: 0.5s ease-in-out
+    &.appeared-posts
+        animation: appearedposts 1s ease-in-out forwards
+        transition: 0.5s ease-in-out
     @media screen and (max-width:1370px)
         justify-content: center
     @media screen and (max-width:870px)
@@ -243,6 +328,49 @@ $logo-size: 400px
         grid-auto-rows: auto
     @media screen and (min-width:1140px)
         justify-content: center
+
+@keyframes fadeposts
+    0%
+        opacity: 1
+        transform: scale(1)
+    99%
+        opacity: 0
+        transform: scale(0)
+    100%
+        display: none
+        transform: scale(0)
+
+@keyframes appearedposts
+    0%
+        display: grid
+        opacity: 0
+        transform: scale(0)
+    1%
+        display: grid
+        opacity: 0
+        transform: scale(0)
+    100%
+        opacity: 1
+        transform: scale(1)
+
+.single__screen
+    width: 100%
+    color: white
+    display: flex
+    flex-direction: column
+
+.screen__block
+    margin-bottom: 20px
+.screen__row
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    & p
+        font-size: 1em
+        line-height: 150%
+    & .gray
+        color: #7e7e7e
+        margin-bottom: 0
 
 .block__item 
     min-height: 150px
@@ -267,7 +395,7 @@ $logo-size: 400px
         &::before
             content: ""
             position: absolute
-            background: red
+            background: none
             right: 26px
             top: 10px
             height: 30px
@@ -289,7 +417,7 @@ $logo-size: 400px
             background: url(../images/item-indicator-red-1.webp)no-repeat
     &.uploaded--4
         &::before
-            background: transparent
+            background: none
 
     // @keyframes active-dot-appear
     //     0%
@@ -356,7 +484,6 @@ $logo-size: 400px
 
     @media screen and ( max-width: 870px )
         background-image: url(../images/item-screen-uncabled-none.webp)!important
-    
 
 .pagination__list
     display: flex
@@ -434,6 +561,116 @@ $logo-size: 400px
     @media screen and ( max-width: 570px )
         font-size: 2em
 
+// .single-post
+.single__post
+    width: $single-post-w-desktop
+    margin: 0 auto
+    height: 870px
+    display: none
+    position: relative
+    bottom:80px
+
+.single__block
+    background: url(../images/single.webp)no-repeat center
+    background-size: contain
+    width: $single-post-w-desktop
+    height: $single-post-h-desktop
+    filter: drop-shadow(0 0 60px #24a400a3)
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: center
+    width: $single-post-w-desktop
+    padding: 130px 100px
+    display: none
+    opacity: 0
+    z-index: 1
+    &::before
+        @extend %pseudo-symbols
+        width: 100px
+        height: 60px
+        background-repeat: no-repeat
+        background-position: right center
+        position: absolute
+        top: 62px
+        right: 68px
+        z-index: 1
+        background-size: 79px
+        filter: drop-shadow(0 0 5px red)
+    &.uploaded--0
+        &::before
+            background-image: url(../images/item-single-indicator-red-4.webp)
+    &.uploaded--1
+        &::before
+            background-image: url(../images/item-single-indicator-red-3.webp)
+    &.uploaded--2
+        &::before
+            background-image: url(../images/item-single-indicator-red-2.webp)
+    &.uploaded--3
+        &::before
+            background-image: url(../images/item-single-indicator-red-1.webp)
+    &.uploaded--4
+        &::before
+            background: none
+    &.open
+        display: block
+        animation: open 1s ease-in-out forwards
+    &.close
+        transition: 0.5s ease-in-out
+        animation: close 1s ease-in-out forwards
+
+.post-thumbnail-single
+    max-width: 100px
+
+@keyframes open
+    0%
+        opacity: 0
+    1%
+        opacity: 0
+        transform: translateY(100) scale(0)
+    100%
+        opacity: 1
+        transform: translateY(-100px) scale(1)
+
+@keyframes close
+    0%
+        opacity: 1
+        transform: translateY(-100px) scale(1)
+    99%
+        opacity: 0
+        transform: translateY(500px) scale(0.5)
+    100%
+        opacity: 0
+        display: none
+
+.single__nav
+    position: absolute
+    bottom: 73px
+    width: 77px
+    cursor: pointer
+    opacity: 0.75
+    transition: opacity 0.2s ease-in-out
+    &:hover
+        opacity: 1
+        transition: opacity 0.2s ease-in-out
+
+.single__nav.single__nav--prev
+    left: -10px
+.single__nav.single__nav--next
+    right: -10px
+
+.single__close
+    position: absolute
+    left: 120px
+    top: 71px
+    width: 54px
+    opacity: 0.7
+    transition: opacity 0.2s ease
+    box-shadow: 0 0 60px black 
+    &:hover
+        cursor: pointer
+        transition: opacity 0.2s ease
+        opacity: 1
 
 .content__taxonomy
     display: flex
