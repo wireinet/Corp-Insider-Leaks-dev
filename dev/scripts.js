@@ -12,10 +12,10 @@ const postList     = document.querySelector('.block__list');
 const singleBlock  = document.querySelector('.single__block');
 const buildings    = document.querySelector('.content__img');
 
-    // close-post
-    singleClose.addEventListener('click', ()=>{
-        closePost();
-    });
+// close-post
+singleClose.addEventListener('click', ()=>{
+    closePost();
+});
 
 function fadePosts() {
     postList.classList.add('faded-posts');
@@ -47,17 +47,14 @@ function closePost() {
 }
 
 function wireDisconnect(){
-    buildings.classList.add('disconnect');
-    setTimeout(()=>{
-        buildings.classList.remove('disconnect');
-    }, 2000);
+    console.log('disconnect');
 }
 
 post.forEach(item =>{
     item.addEventListener('click', (e)=>{
         wireDisconnect();
         e.preventDefault();
-        console.log('Открытие одиночного поста');
+        console.log('open single post');
         fadePosts();
         setTimeout(()=>{loadPost();}, 500);
 

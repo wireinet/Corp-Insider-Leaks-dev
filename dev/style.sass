@@ -200,32 +200,28 @@ $logo-size: 400px
     justify-content: center
     position: relative
     z-index:1
+    mix-blend-mode: plus-lighter
     @media screen and (max-width: 1370px)
         margin-bottom: 150px
-    &::after
-        transition: all 1s ease-in-out
-        @extend %pseudo-symbols    
-        background: url(../images/wires-anim.gif)
-        background-position: bottom
-        background-repeat: no-repeat
-        left: 60%
-        top: -30px
-        width: 500px
-        z-index: -1
-        @media screen and (max-width: 1370px)
-            background: url(../images/wires-mob.webp)
-            left: 0
-            height: 100%
-            top: 273px
-            background-repeat: no-repeat
-            background-size: 225px
-            width: 100%
-            background-position: center bottom
-    &.disconnect
-        &::after
-            animation: disconnect 2s ease-in-out forwards
-            transition: all 2s ease-in-out
-            transform-origin: 0 100%
+    // &::after
+    //     transition: all 1s ease-in-out
+    //     @extend %pseudo-symbols    
+    //     background: url(../images/wires-anim.gif)
+    //     background-position: bottom
+    //     background-repeat: no-repeat
+    //     left: 60%
+    //     top: -30px
+    //     width: 500px
+    //     z-index: -1
+    //     @media screen and (max-width: 1370px)
+    //         background: url(../images/wires-mob.webp)
+    //         left: 0
+    //         height: 100%
+    //         top: 273px
+    //         background-repeat: no-repeat
+    //         background-size: 225px
+    //         width: 100%
+    //         background-position: center bottom
     @media screen and (max-width: 570px)
         width: 100%
     img
@@ -235,23 +231,13 @@ $logo-size: 400px
         @media screen and (max-width: 570px)
             width: 80%
 
-@keyframes disconnect
-    0%
-        background-image: url(../images/wires-anim.gif)
-        transform: translateX(0)
-    50%
-        background-image: url(../images/wires.webp)
-        transform: translateX(-50px) 
-    100%
-        transform: translateX(0)
-        background-image: url(../images/wires-anim.gif)
-
 .content__info 
     display: grid
     align-items: start
     grid-template-columns: 40% 1fr
     max-width: $wide
     margin: 0 auto
+    position: relative
     @media screen and ( max-width: 870px )
         gap: 20px
     @media screen and ( min-width: 1441px )
@@ -260,21 +246,33 @@ $logo-size: 400px
     @media screen and ( max-width: 1370px )
         grid-template-columns: 1fr
         justify-content: center
+        
+.content__wires
+    background-image: url(../images/wires.webp)
+    background-repeat: no-repeat
+    background-size: contain
+    background-position: center
+    width: 400px
+    height: 400px
+    position: absolute
+    top: 410px
+    left: 490px
 
+// OPEN SINGLE POST
 $single-post-w-desktop: 756px
 $single-post-h-desktop: 870px
 $single-post-w-mobile: 756px
-// OPEN SINGLE POST
 .single
     & p
         font-size: 12px
         margin-bottom: 10px
     & .block__list
-        display: none
+        visibility: hidden
     & .pagination
-        display: none
-    & .line-post
-        display: none
+        transition: visability 0.5s ease-out
+        visibility: hidden
+    // & .line-post
+    //     display: none
     & .single__post
         transition: transform 2s ease-in-out, opacity 1s ease
         transform: scale(1)
@@ -293,15 +291,6 @@ $single-post-w-mobile: 756px
             font-size: 12px
             border: 4px solid $green
             padding: 6px 4px
-
-.content__posts
-    &.single
-        &::after
-            transition: opacity 0.5s ease-in-out
-            opacity: 0
-        &::before
-            transition: opacity 0.5s ease-in-out
-            opacity: 0
 
 /// OPEN SINGLE POST
 .block__list
