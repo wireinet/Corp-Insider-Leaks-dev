@@ -16,14 +16,19 @@ html(lang="en")
             .logo
                 //- img.logo-over(src="images/logo.webp" alt="")
                 img(src="images/logo.webp" alt="")
-                
             main.content
                 section.content__info
-                    .content__img
-                        img(src="images/buildings.webp" alt="buildings")
+                    .content__img.projector
+                        .projector__building
+                            img(src="images/buildings.webp" alt="buildings")
+                        .projector__platform
+                            img.projector-light(src="images/projector-light.webp" alt="projector light")
+                            img.projector-light.projector-ligh--2(src="images/projector-light.webp" alt="projector light")
+                            img(src="images/projector.webp" alt="projector")
+                    .content__wires
                     .content__posts
                         include single-post  
-                        .line-post
+                        //- .line-post
                         ul.block__list
                             li.block__item.uploaded.uploaded--0
                                 include post
@@ -96,5 +101,7 @@ html(lang="en")
                             img.processor__image(src="images/proc.webp", alt="processor")
 
             canvas(id="c")
+            
+    script(src="assets/anime.min.js")
+    script(src="assets/matrix.js")
     script(src="assets/scripts.min.js")
-    

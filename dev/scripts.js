@@ -3,48 +3,13 @@ var body = document.body,
     html = document.documentElement;
 var bodyHeight = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
 
-
 // POSTS
-const contentPosts = document.querySelector('.content__posts');
-const singleClose  = document.querySelector('.single__close');
-const post         = document.querySelectorAll('.post');
-const postList     = document.querySelector('.block__list');
-const singleBlock  = document.querySelector('.single__block');
-const buildings    = document.querySelector('.content__img');
+const singleClose = document.querySelector('.single__close');
+const singleBlock = document.querySelector('.single__block');
+const post        = document.querySelectorAll('.post');
+const blockList   = document.querySelector('.block__list');
 
-// close-post
-singleClose.addEventListener('click', ()=>{
-    closePost();
-});
-
-function fadePosts() {
-    postList.classList.add('faded-posts');
-    setTimeout(()=>{
-        postList.classList.remove('faded-posts');
-    }, 550);
-}
-function appearPosts() {
-    postList.classList.add('appeared-posts');
-    setTimeout(()=>{
-        postList.classList.remove('appeared-posts');
-    }, 1000);
-}
-
-function loadPost() {
-    singleBlock.classList.add('open');
-    contentPosts.classList.add('single')
-    console.log('post appear');
-}
-
-function closePost() {
-    wireDisconnect()
-    singleBlock.classList.add('close');
-    setTimeout(()=>{
-        contentPosts.classList.remove('single');
-        singleBlock.classList.remove('open', 'close');
-        appearPosts();
-    }, 500);
-}
+// appearing posts
 
 function wireDisconnect(){
     console.log('disconnect');
@@ -52,11 +17,69 @@ function wireDisconnect(){
 
 post.forEach(item =>{
     item.addEventListener('click', (e)=>{
-        wireDisconnect();
         e.preventDefault();
-        console.log('open single post');
-        fadePosts();
-        setTimeout(()=>{loadPost();}, 500);
+        blockList.classList.add('faded');
+        singleBlock.classList.add('open');
 
+        // blockList.classList.remove('faded');
+        // openSinglePost.play();
+        console.log('open single post');
     });
 });
+
+// ANIME
+    const platformMove = anime({
+        targets: '.projector-light',
+        opacity: Math.random() * 0.8 / 1,
+        direction: 'alternate',
+        loop: true,
+        easing: 'linear',
+        duration: 1000
+    });
+
+    // const openSinglePost = anime.timeline({
+    //     autoplay: false,
+    //     easing: 'easeInOutQuad',
+    // }).add({
+    //     targets: '.block__item',
+    //     scale: 0,
+    //     opacity: 0.5,
+    //     duration: 500,
+    //     delay: anime.stagger(100, {start:500, from:'center', easing: 'easeOutQuad'}),
+    // }).add({
+    //     targets: '.single__block',
+    //     zIndex:5,
+    //     opacity:1,
+    //     scale: [0.5,1],
+    //     rotate: ['10deg', '0deg'],
+    //     delay:250,
+    //     duration: 100
+    // }, 300);
+
+    // const closeSinglePost = anime.timeline({
+    //     autoplay: false,
+    //     easing: 'easeInOutQuad',
+    //     duration:200
+    // }).add({
+    //     targets: '.single__block',
+    //     opacity:0,
+    //     zIndex:0,
+    //     scale: 0,
+    //     rotate: ['0deg', '3deg']
+    // }).add({
+    //     targets: '.block__item',
+    //     scale: 1,
+    //     opacity: 1,
+    //     // delay: anime.stagger(100, {from:'center', easing: 'easeOutQuad'}),
+    // });
+
+// close-post
+    singleClose.addEventListener('click', function(){
+        // closeSinglePost.play();
+        console.log('close');
+        blockList.classList.remove('faded');
+        setTimeout(function(){
+            singleBlock.classList.remove('open');
+        }, 200);
+
+    });

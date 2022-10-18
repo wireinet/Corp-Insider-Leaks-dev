@@ -39,6 +39,12 @@ function copyfonts() {
     .pipe(dest('./public/assets/fonts'))
     .pipe(browserSync.stream());
 }
+// LIBS
+function libs() {
+    return src('./dev/libs/**/*.js')
+    .pipe(dest('./public/assets/'))
+    .pipe(browserSync.stream());
+}
 
 // PUG
 function views() {
@@ -54,7 +60,7 @@ return src('./dev/index.pug')
 };
 
 function scripts() {
-    return src(['dev/scripts.js', 'dev/libs/**.*'])
+    return src('dev/scripts.js')
     .pipe(uglify())
     .pipe(concat('scripts.min.js'))
     .pipe(dest('public/assets'))
@@ -68,12 +74,11 @@ function images(){
         .pipe(browserSync.stream());
     }
 
-
 function watchers() {
     watch('dev/*.pug', views);
     watch('dev/img/**.*', images);
     watch('dev/style.sass', style);
-    watch(['dev/scripts.js', 'dev/libs/**.js'], scripts);
+    watch(['dev/scripts.js', 'dev/libs/**/*.js'], scripts);
 }
 
 exports.views = views;
@@ -82,5 +87,6 @@ exports.images = images;
 exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.fonts = copyfonts;
+exports.libs = libs;
 
-exports.default = parallel(views, style, images, watchers, browsersync);
+exports.default = parallel(views, libs, style, images, watchers, browsersync);

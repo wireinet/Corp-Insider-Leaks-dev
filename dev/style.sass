@@ -116,33 +116,24 @@ $logo-size: 400px
         width: 100%
         opacity: 0.8
 
-// .separator 
-//     background: black url(../images/separator.webp)
-//     background-repeat: repeat-x
-//     background-size: contain
-//     background-position: center
-//     height: 30px
+// .line-post
+//     height: 120px
 //     width: 100%
-//     position: relative
-//     z-index:2
-
-.line-post
-    height: 120px
-    width: 100%
-    background-image: url(../images/line-post-header.webp)
-    background-repeat: no-repeat
-    background-position: top
-    background-size: cover
-    position: absolute
+//     background-image: url(../images/line-post-header.webp)
+//     background-repeat: no-repeat
+//     background-position: top
+//     background-size: cover
+//     position: absolute
 
 .content
     margin: 0 auto
     height: auto
     @media screen and ( min-width: 1000px )
         @include bgimage()
-        background-size: 1575px
+        background-size: 1216px
 
 .content__posts
+    perspective: 800px
     display: flex
     align-items: center
     flex-direction: column
@@ -152,6 +143,8 @@ $logo-size: 400px
     position: relative
     z-index: 2
     transition: opacity 1s ease-in-out
+    @media screen and ( min-width: 1370px )
+        margin-top: 80px
     @media screen and ( min-width: 870px )
     &::before
         @extend %pseudo-symbols
@@ -162,8 +155,10 @@ $logo-size: 400px
         background-repeat: no-repeat
         background-position: right center
         z-index: 0
-        left: 8%
-        opacity: 0.5
+        left: -30px
+        opacity: 0
+        @media screen and ( min-width: 1370px )
+            opacity: 0.5
         @media screen and ( max-width: 870px )
             background-size: 80%
             top: -10%
@@ -182,58 +177,80 @@ $logo-size: 400px
             background-image: url(../images/microchip-mob.webp)
             background-position: center
             opacity: 0.7   
-    &::after
+    &:after
         @extend %pseudo-symbols
-        width: 1000px
-        height: 800px
+        width: 1274px
+        height: 920px
         background-color: black
         top: -46px
-        right: -125px
+        right: -400px
         z-index: -1
+        -webkit-filter: blur(58px)
         filter: blur(58px)
+        @media screen and ( max-width: 1500px )
+            right: -480px
+        @media screen and ( max-width: 1370px )
+            top: 30px
+            left: 0
+            width: 100%
+            height: 70%
         @media screen and ( max-width: 870px )
             height: 100%
-            
+
 .content__img
     display: flex
-    align-items: flex-end
+    flex-direction: column
+    align-items: center
     justify-content: center
     position: relative
     z-index:1
-    mix-blend-mode: plus-lighter
+    width: 75%
+    margin: 0 auto
+    margin-bottom: 50px
+    // BRACKEPOINT TO STACK
     @media screen and (max-width: 1370px)
-        margin-bottom: 150px
-    // &::after
-    //     transition: all 1s ease-in-out
-    //     @extend %pseudo-symbols    
-    //     background: url(../images/wires-anim.gif)
-    //     background-position: bottom
-    //     background-repeat: no-repeat
-    //     left: 60%
-    //     top: -30px
-    //     width: 500px
-    //     z-index: -1
-    //     @media screen and (max-width: 1370px)
-    //         background: url(../images/wires-mob.webp)
-    //         left: 0
-    //         height: 100%
-    //         top: 273px
-    //         background-repeat: no-repeat
-    //         background-size: 225px
-    //         width: 100%
-    //         background-position: center bottom
+        width: 45%
+        margin-bottom: 20px
     @media screen and (max-width: 570px)
-        width: 100%
+        width: 80%
     img
-        pointer-events: none
         width: 100%
-        max-width: 500px
+        pointer-events: none
         @media screen and (max-width: 570px)
             width: 80%
 
+.content__img
+    mix-blend-mode: lighten
+.projector__building
+    img
+        position: relative
+        bottom:20px
+        display: block
+        margin: 0 auto
+
+.projector__platform
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.projector-light
+    position: absolute
+    transform: translateX(-50%)
+    bottom: -11%
+    left: 53%
+    width:133%!important
+    mix-blend-mode: hard-light
+    @media screen and (max-width:570px)
+        width: 100%!important
+        bottom: -60px
+    @media screen and (min-width:320px) and (max-width:442px)
+        bottom: -39px
+    @media screen and (min-width:443px) and (max-width:580px)
+        bottom: -50px
+
 .content__info 
     display: grid
-    align-items: start
+    align-items: end
     grid-template-columns: 40% 1fr
     max-width: $wide
     margin: 0 auto
@@ -252,45 +269,26 @@ $logo-size: 400px
     background-repeat: no-repeat
     background-size: contain
     background-position: center
-    width: 400px
-    height: 400px
+    width: 396px
+    height: 366px
     position: absolute
-    top: 410px
-    left: 490px
-
+    top: 479px
+    left: 30%
+    @media screen and (max-width:1370px)
+        width: 100%
+        background-image: url(../images/wires-mob.webp)
+        background-size: auto
+        position: static
+        height: 200px
+        margin-bottom: -70px
+        margin-top: -90px
+        mix-blend-mode: lighten
+    @media screen and (max-width:870px)
+        margin-bottom: -100px
 // OPEN SINGLE POST
 $single-post-w-desktop: 756px
 $single-post-h-desktop: 870px
 $single-post-w-mobile: 756px
-.single
-    & p
-        font-size: 12px
-        margin-bottom: 10px
-    & .block__list
-        visibility: hidden
-    & .pagination
-        transition: visability 0.5s ease-out
-        visibility: hidden
-    // & .line-post
-    //     display: none
-    & .single__post
-        transition: transform 2s ease-in-out, opacity 1s ease
-        transform: scale(1)
-        opacity: 1
-        display: block
-    & .single__block
-        transition: transform 2s ease-in-out, opacity 1s ease
-        transform: scale(1)
-        opacity: 1
-        position: relative
-    & table
-        width: 100%
-        border-collapse: collapse
-        margin-bottom: 20px
-        td
-            font-size: 12px
-            border: 4px solid $green
-            padding: 6px 4px
 
 /// OPEN SINGLE POST
 .block__list
@@ -303,13 +301,13 @@ $single-post-w-mobile: 756px
     margin-bottom: 40px
     position: relative
     z-index: 1
-    transition: transform 1s ease-in-out, opacity 1s ease
-    &.faded-posts
-        animation: fadeposts 1s ease-in-out forwards
-        transition: 0.5s ease-in-out
-    &.appeared-posts
-        animation: appearedposts 1s ease-in-out forwards
-        transition: 0.5s ease-in-out
+    transition: opacity 0.5s ease-in, transform 1s ease-in
+    &.faded
+        opacity: 0
+        transform: rotateY(-100deg) scale(0)
+        transition: opacity 0.5s 0.2s ease-out, transform 1s ease-out
+        // transform: scale(0)
+
     @media screen and (max-width:1370px)
         justify-content: center
     @media screen and (max-width:870px)
@@ -318,35 +316,14 @@ $single-post-w-mobile: 756px
     @media screen and (min-width:1140px)
         justify-content: center
 
-@keyframes fadeposts
-    0%
-        opacity: 1
-        transform: scale(1)
-    99%
-        opacity: 0
-        transform: scale(0)
-    100%
-        display: none
-        transform: scale(0)
-
-@keyframes appearedposts
-    0%
-        display: grid
-        opacity: 0
-        transform: scale(0)
-    1%
-        display: grid
-        opacity: 0
-        transform: scale(0)
-    100%
-        opacity: 1
-        transform: scale(1)
-
 .single__screen
     width: 100%
     color: white
     display: flex
     flex-direction: column
+    margin-top: 85px
+    @media screen and (max-width:740px)
+        height: auto 
 
 .screen__block
     margin-bottom: 20px
@@ -407,15 +384,6 @@ $single-post-w-mobile: 756px
     &.uploaded--4
         &::before
             background: none
-
-    // @keyframes active-dot-appear
-    //     0%
-    //         opacity: 0
-    //         background: transparent
-    //     100%
-    //         opacity: 1
-    //         background: url(../images/dots.gif)no-repeat
-            
     &:nth-child(1)
         background-image: url(../images/item-screen-1.webp)
         &::after
@@ -551,15 +519,30 @@ $single-post-w-mobile: 756px
         font-size: 2em
 
 // .single-post
-.single__post
-    width: $single-post-w-desktop
-    margin: 0 auto
-    height: 870px
-    display: none
-    position: relative
-    bottom:80px
-
 .single__block
+    transform: scale(0)
+    opacity: 0
+    position: relative
+    transform: rotateY(-100deg) scale(0)
+    transition: opacity 0.5s 0.2s ease-out, transform 1s ease-out
+    &.open
+        transform: rotateY(0) scale(1)
+        opacity: 1
+        transition: opacity 0.5s 0.2s ease-in, transform 1s ease-in
+        transition: all 1s ease
+        z-index: 5
+    & table
+        width: 100%
+        border-collapse: collapse
+        margin-bottom: 20px
+        td
+            font-size: 12px
+            border: 4px solid $green
+            padding: 6px 4px
+        @media screen and (max-width:480px)
+            width: 90%
+            margin: 20px auto
+
     background: url(../images/single.webp)no-repeat center
     background-size: contain
     width: $single-post-w-desktop
@@ -571,9 +554,9 @@ $single-post-w-mobile: 756px
     justify-content: center
     width: $single-post-w-desktop
     padding: 130px 100px
-    display: none
+    position: absolute
+    z-index: 0
     opacity: 0
-    z-index: 1
     &::before
         @extend %pseudo-symbols
         width: 100px
@@ -586,6 +569,9 @@ $single-post-w-mobile: 756px
         z-index: 1
         background-size: 79px
         filter: drop-shadow(0 0 5px red)
+        @media screen and (max-width:740px)
+            right: 45px
+            top: 18px
     &.uploaded--0
         &::before
             background-image: url(../images/item-single-indicator-red-4.webp)
@@ -601,36 +587,18 @@ $single-post-w-mobile: 756px
     &.uploaded--4
         &::before
             background: none
-    &.open
-        display: block
-        animation: open 1s ease-in-out forwards
-    &.close
-        transition: 0.5s ease-in-out
-        animation: close 1s ease-in-out forwards
-
+    @media screen and (max-width:740px)
+        background: black
+        width: 100%
+        height: auto
+        padding: 40px
+        padding: 40px 40px 80px 40px
+        border: 7px solid orange
+    @media screen and (max-width:480px)
+        padding: 20px 20px 80px 20px
+        width: 90%
 .post-thumbnail-single
     max-width: 100px
-
-@keyframes open
-    0%
-        opacity: 0
-    1%
-        opacity: 0
-        transform: translateY(100) scale(0)
-    100%
-        opacity: 1
-        transform: translateY(-100px) scale(1)
-
-@keyframes close
-    0%
-        opacity: 1
-        transform: translateY(-100px) scale(1)
-    99%
-        opacity: 0
-        transform: translateY(500px) scale(0.5)
-    100%
-        opacity: 0
-        display: none
 
 .single__nav
     position: absolute
@@ -639,6 +607,8 @@ $single-post-w-mobile: 756px
     cursor: pointer
     opacity: 0.75
     transition: opacity 0.2s ease-in-out
+    @media screen and (max-width:740px)
+        bottom: -5px
     &:hover
         opacity: 1
         transition: opacity 0.2s ease-in-out
@@ -655,7 +625,12 @@ $single-post-w-mobile: 756px
     width: 54px
     opacity: 0.7
     transition: opacity 0.2s ease
-    box-shadow: 0 0 60px black 
+    box-shadow: 0 0 60px black
+    @media screen and (max-width:740px)
+        left: 40px
+        top: 34px
+    @media screen and (max-width:480px)
+        left: 20px
     &:hover
         cursor: pointer
         transition: opacity 0.2s ease
