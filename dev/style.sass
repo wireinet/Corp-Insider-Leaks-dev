@@ -82,6 +82,10 @@ p
 .wrapper
     position: relative
     overflow: hidden
+    @include bgimage()
+    background-size: auto 20%
+    @media screen and ( min-width: 1000px )
+        background-size: 1216px
     &:after
         @extend %pseudo-symbols
         top: auto
@@ -90,14 +94,12 @@ p
         width: 100%
         height: 45%
             
-
 section
     padding: 60px
     max-width: $wide
     margin: 0 auto
     @media screen and ( max-width: 1000px )
         padding: 20px
-
 $logo-size: 400px   
 .logo
     width: 450px
@@ -128,9 +130,6 @@ $logo-size: 400px
 .content
     margin: 0 auto
     height: auto
-    @media screen and ( min-width: 1000px )
-        @include bgimage()
-        background-size: 1216px
 
 .content__posts
     perspective: 800px
@@ -636,53 +635,78 @@ $single-post-w-mobile: 756px
         transition: opacity 0.2s ease
         opacity: 1
 
+
+// --FOOTER
+footer
+    padding: 60px
+    max-width: $wide
+    margin: 0 auto
+    @media screen and ( max-width: 1000px )
+        padding: 20px
+
 .content__taxonomy
+    @media screen and (min-width:1370px)
+        padding-left: 210px
     display: flex
+    justify-content: space-between
     & .taxonomy:not(:last-child)
         margin-bottom: 40px
-        margin-right: 40px
     @media screen and (max-width: 1000px)
         flex-wrap: wrap
         justify-content: space-between
+    @media screen and (max-width: 400px)
+        flex-direction: column
+        justify-content: flex-start
+        align-content: center
 
-        
-
-taxonomy
-    display: flex
-    flex-direction: column
+.footer__widget
+    flex: 1 1 auto
+    margin-bottom: 50px
 
 .taxonomy__title
     display: block
+
+.taxonomy__titleBG
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    width: auto
     color: $bright
     @extend %glow
-    font-size: 0.8em
+    font-size: 1.1em
     font-family: 'Digital'
-    background-image: url(../images/symbol-block-black.webp)
     margin-bottom: 10px
-    padding: 0 5px
-    display: flex
-    align-items: center
     @media screen and ( max-width: 570px )
         min-height: 45px
-    h2
-        letter-spacing: 3px
-        padding: 5px
-    &:before
-        @extend %pseudo-symbols
-        right: 99%
-        background-image: url(../images/symbol-block-l.webp)
-        background-repeat: no-repeat
-        background-size: contain
-    &:after
-        @extend %pseudo-symbols
-        right: -5px
-        background-image: url(../images/symbol-block-r.webp)
-        background-repeat: no-repeat
-        background-size: contain
-        
+    letter-spacing: 3px
+    padding: 6px 10px
+    background-size: auto 100%
+    background-repeat: repeat-x
+    border-top: 2px solid #183b18
+    border-bottom: 2px solid #031804
+    border-left: 2px solid green
+    border-right: 2px solid green
+    background-color: black
+    border-radius: 4px
+    // &:before
+    //     @extend %pseudo-symbols
+    //     right: 94%
+    //     background-image: url(../images/symbol-block-l.webp)
+    //     background-repeat: no-repeat
+    //     background-size: contain
+    //     display: none
+    // &:after
+    //     @extend %pseudo-symbols
+    //     right: -5px
+    //     background-image: url(../images/symbol-block-r.webp)
+    //     background-repeat: no-repeat
+    //     background-size: contain
+    //     display: none
+    
 .taxonomy__list
     display: inline-flex
-    flex-direction: column 
+    flex-direction: column
+    padding-left: 10px
 
 .taxonomy__item
     position: relative
@@ -715,6 +739,8 @@ taxonomy
     align-items: center
     justify-content: center
     flex: 1 1 auto
+    @media screen and (max-width:602px)
+        order: 4
 
 .processor__images
     position: relative

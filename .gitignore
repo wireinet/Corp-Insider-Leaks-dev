@@ -3,4 +3,4 @@ node_modules
 Исходники
 img/**
 img/temp
-public
+.vercel

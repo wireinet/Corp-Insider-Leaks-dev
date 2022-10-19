@@ -13,7 +13,7 @@ html(lang="en")
     body
         .wrapper
             h1.hidden Corp Insider Leaks
-            .logo
+            header.logo
                 //- img.logo-over(src="images/logo.webp" alt="")
                 img(src="images/logo.webp" alt="")
             main.content
@@ -67,38 +67,39 @@ html(lang="en")
                             li.pagination__item
                                 a.pagination__link(href="") >>
 
-                section.content__taxonomy
-                    .taxonomy
-                        .taxonomy__title
-                            h2 Tags
-                        ul.taxonomy__list
-                            -let tax='Tag' 
-                            -let tax_i=1
-                            while tax_i < 8
-                                li.taxonomy__item
-                                    a.taxonomy__link(href="#") tag #{tax_i++}
-                    .taxonomy
-                        .taxonomy__title
-                            h2 Categories
-                        ul.taxonomy__list
-                            -let tax2='Category' 
-                            -let tax2_i=1
-                            while tax2_i < 8
-                                li.taxonomy__item
-                                    a.taxonomy__link(href="#") Category #{tax2_i++}
-                    .taxonomy
-                        .taxonomy__title
-                            h2 Recents
-                        ul.taxonomy__list
-                            -let tax3='Category' 
-                            -let tax3_i=1
-                            while tax3_i < 8
-                                li.taxonomy__item
-                                    a.taxonomy__link(href="#") Category #{tax3_i++}
-                    .processor
-                        .processor__images
-                            img.processor__image.processor__image--glow(src="images/proc-glow.webp", alt="processor")
-                            img.processor__image(src="images/proc.webp", alt="processor")
+            footer.content__taxonomy.footer
+                
+                .footer__widget
+                    .taxonomy__title
+                        h2.taxonomy__titleBG Tags
+                    ul.taxonomy__list
+                        -let tax='Tag' 
+                        -let tax_i=1
+                        while tax_i < 8
+                            li.taxonomy__item
+                                a.taxonomy__link(href="#") tag #{tax_i++}
+                .footer__widget
+                    .taxonomy__title
+                        h2.taxonomy__titleBG Categories
+                    ul.taxonomy__list
+                        -let tax2='Category' 
+                        -let tax2_i=1
+                        while tax2_i < 8
+                            li.taxonomy__item
+                                a.taxonomy__link(href="#") Category #{tax2_i++}
+                .footer__widget.processor
+                    .processor__images
+                        img.processor__image.processor__image--glow(src="images/proc-glow.webp", alt="processor")
+                        img.processor__image(src="images/proc.webp", alt="processor")
+                .footer__widget
+                    .taxonomy__title
+                        h2.taxonomy__titleBG Recents
+                    ul.taxonomy__list
+                        -let tax3='Category' 
+                        -let tax3_i=1
+                        while tax3_i < 8
+                            li.taxonomy__item
+                                a.taxonomy__link(href="#") Category #{tax3_i++}
 
             canvas(id="c")
             
