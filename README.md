@@ -1,1 +1,7 @@
-# Corp-Insider-Leaks-dev
+# site-corp-Insider-leaks\
+Start from this:
+
+```
+npm install
+gulp
+```
