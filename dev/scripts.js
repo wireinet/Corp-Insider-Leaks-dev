@@ -60,17 +60,10 @@ singleClose.addEventListener("click", function() {
         blockList.classList.remove("faded");
         wireConnect();
     }, 800);
-    // if (matchMedia("(max-width: 870px)").matches) {
-    //     console.log('show blockList to height normal');
-    //     setTimeout(function(){
-    //         blockList.style.display = 'grid';
-    //         singleBlock.style.position = 'absolute';
-    //         }, 3000);
-    //     }
-
 });
 
 // jQUERY
+
 $(".content__img.projector").hover( () => { 
     wiresAnimate("send_data");
     setTimeout(function() {
@@ -78,14 +71,28 @@ $(".content__img.projector").hover( () => {
     }, 800)    
 })
 
+window.addEventListener('scroll', function() {
+if(window.screen.width < 1370){   
+    wiresAnimate("send_data");
+    }
+})
+
+
 function wiresAnimate(state){
     if(window.screen.width >= 1370){
-    switch(state){
-        case 'default' : $(".content__wires").css({'background-image': 'url(../images/wires.webp)'}); break;
-        case 'send_data' : $(".content__wires").css({'background-image': 'url(../images/wires-animate-3wawes_v2.gif)'}); break; 
-        case 'disconnect' : $(".content__wires").css({'background-image': 'url(../images/wires-disconect.gif' + "?p" + new Date().getTime() + ")"}); break;
-        case 'connect' : $(".content__wires").css({'background-image': 'url(../images/wiresconect.gif' + "?p" + new Date().getTime() + ")"}) 
-    }
+        switch(state){
+            case 'default' : $(".content__wires").css({'background-image': "url(../images/wires.webp)"}); break;
+            case 'send_data' : $(".content__wires").css({'background-image': "url(../images/wires-animate-3wawes_v2.gif)"}); break; 
+            case 'disconnect' : $(".content__wires").css({'background-image': "url(../images/wires-disconect.gif" + "?p" + new Date().getTime() + ")"}); break;
+            case 'connect' : $(".content__wires").css({'background-image': "url(../images/wiresconect.gif" + "?p" + new Date().getTime() + ")"}) 
+        }
+    }else{
+        switch(state){
+            case 'default' : $(".content__wires").css({'background-image': "url(../images/wires.webp)"}); break;
+            case 'send_data' : $(".content__wires").css({'background-image': "url(../images/wires-mob-send.gif"}); break; 
+            case 'disconnect' : $(".content__wires").css({'background-image': "url(../images/wires-mob-disconnect.gif" + "?p" + new Date().getTime() + ")"}); break;
+            case 'connect' : $(".content__wires").css({'background-image': "url(../images/wires-mob-connect.gif" + "?p" + new Date().getTime() + ")"}) 
+        } 
     }
 }
 
@@ -110,4 +117,4 @@ function panelAnimate(state){
         $('.single__block').css({'background-image': 'url(../images/single.gif)'})
     }
     }
-} 
+}

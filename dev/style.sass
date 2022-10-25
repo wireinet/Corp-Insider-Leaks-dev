@@ -108,6 +108,7 @@ $logo-size: 400px
     display: flex
     align-items: center
     justify-content: center
+    opacity: 0.7
     @media screen and (max-width: 570px)
         width: 80%
     img
@@ -277,11 +278,12 @@ $logo-size: 400px
     background-repeat: no-repeat
     background-size: contain
     background-position: center
-    width: 396px
+    width: 446px
     height: 366px
     position: absolute
     top: 479px
-    left: 30%
+    left: 31%
+    transition: background 0.2s ease 0.5s
     @media screen and (max-width:1370px)
         width: 100%
         background-image: url(../images/wires-mob.webp)
@@ -314,8 +316,6 @@ $single-post-w-mobile: 756px
         opacity: 0
         transform: rotateY(-100deg) scale(0)
         transition: opacity 0.5s 0.2s ease-out, transform 1s ease-out
-        // transform: scale(0)
-
     @media screen and (max-width:1370px)
         justify-content: center
     @media screen and (max-width:870px)
@@ -330,8 +330,14 @@ $single-post-w-mobile: 756px
     display: flex
     flex-direction: column
     margin-top: 85px
+    background-color: black
+    padding: 20px
     @media screen and (max-width:740px)
-        height: auto 
+        height: auto
+        margin-top: 0
+        padding-top: 137px
+    @media screen and (max-width:410px)
+        padding-top: 60px
 
 .screen__block
     margin-bottom: 20px
@@ -353,6 +359,7 @@ $single-post-w-mobile: 756px
     background-repeat: no-repeat
     background-image: url(../images/item-screen-uncabled-none.webp)
     position: relative
+    transition: background 0.2s ease 0.5s
     // INDICATOR
     &::after
         content: ""
@@ -539,6 +546,8 @@ $single-post-w-mobile: 756px
         transition: opacity 0.5s 0.2s ease-in, transform 1s ease-in
         transition: all 1s ease
         z-index: 5
+        @media screen and ( max-width: 740px )
+            width: 90%
     & table
         width: 100%
         border-collapse: collapse
@@ -550,7 +559,6 @@ $single-post-w-mobile: 756px
         @media screen and (max-width:480px)
             width: 90%
             margin: 20px auto
-
     background: url(../images/single.webp)no-repeat center
     background-size: contain
     width: $single-post-w-desktop
@@ -567,43 +575,63 @@ $single-post-w-mobile: 756px
     opacity: 0
     &::before
         @extend %pseudo-symbols
-        width: 100px
+        width: 142px
         height: 60px
         background-repeat: no-repeat
         background-position: right center
         position: absolute
-        top: 62px
-        right: 68px
         z-index: 1
-        background-size: 79px
-        filter: drop-shadow(0 0 5px red)
+        background-size: contain
+        background-position: center
+        top: 53px
+        right: 68px
         @media screen and (max-width:740px)
-            right: 45px
-            top: 18px
+            right: -1px
+            top: -58px
+            background-size: 102%
+            width: 140px
+            background-position: right
+        @media screen and (max-width:410px)
+            right: 11px
+            top: -67px
+            width: 140px
+            background-size: 70%
     &.uploaded--0
         &::before
             background-image: url(../images/item-single-indicator-red-4.webp)
+            @media screen and (max-width:740px)
+                background-image: url(../images/item-single-indicator-red-4-mob.webp)
     &.uploaded--1
         &::before
             background-image: url(../images/item-single-indicator-red-3.webp)
+            @media screen and (max-width:740px)
+                background-image: url(../images/item-single-indicator-red-3-mob.webp)
     &.uploaded--2
         &::before
             background-image: url(../images/item-single-indicator-red-2.webp)
+            @media screen and (max-width:740px)
+                background-image: url(../images/item-single-indicator-red-2-mob.webp)
     &.uploaded--3
         &::before
             background-image: url(../images/item-single-indicator-red-1.webp)
+            @media screen and (max-width:740px)
+                background-image: url(../images/item-single-indicator-red-1-mob.webp)
     &.uploaded--4
         &::before
             background: none
+    @media screen and (max-width:1370px)
+        margin-top: -60px
     @media screen and (max-width:740px)
-        background: black
+        background: #114812 url(../images/single-mob-bg.webp)
+        background-repeat: repeat
+        background-size: auto 30px
         width: 100%
         height: auto
-        padding: 40px
-        padding: 40px 40px 80px 40px
-        border: 7px solid orange
+        padding: 10px 25px 80px 25px
+        margin-top: 50px
+        background-size: auto
     @media screen and (max-width:480px)
-        padding: 20px 20px 80px 20px
+        padding: 20px 20px 20px 20px
         width: 90%
 .post-thumbnail-single
     max-width: 100px
@@ -623,8 +651,25 @@ $single-post-w-mobile: 756px
 
 .single__nav.single__nav--prev
     left: -10px
+    @media screen and (max-width:740px)
+        left: 15px
+        bottom: -31px
+    @media screen and (max-width:610px)
+        left: 8px
+    @media screen and (max-width:410px)
+        left: 19px
+        width: 50px
+
 .single__nav.single__nav--next
     right: -10px
+    @media screen and (max-width:740px)
+        right: 17px
+        bottom: -28px
+    @media screen and (max-width:610px)
+        right: 8pxs
+    @media screen and (max-width:410px)
+        right: 19px
+        width: 50px
 
 .single__close
     position: absolute
@@ -634,16 +679,109 @@ $single-post-w-mobile: 756px
     opacity: 0.7
     transition: opacity 0.2s ease
     box-shadow: 0 0 60px black
+    z-index: 2
     @media screen and (max-width:740px)
-        left: 40px
-        top: 34px
+        left: 48px
+        top: 29px
+    @media screen and (max-width:612px)
+        left: 41px
     @media screen and (max-width:480px)
-        left: 20px
+        left: 40px
+    @media screen and (max-width:410px)
+        left: 22px
+        width: 17%
+        top: 3px
     &:hover
         cursor: pointer
         transition: opacity 0.2s ease
         opacity: 1
 
+.single__mob-header
+    position: relative
+    display: none
+    height: 117px
+    width: 81%
+    @media (max-width:410px)
+        width: 70%
+        height: 62px
+        background-size: auto 100%
+    position: absolute
+    background: url(../images/single-mob-bg-panels.webp)
+    background-repeat: repeat-x
+    top: -20px
+    &::before
+        @extend %pseudo-symbols
+        width: 285px
+        height: 170px
+        background: url(../images/single-mob-back.webp)
+        background-repeat: no-repeat
+        background-position: left top
+        left:-76px
+        top: -34px
+        z-index: 1
+        @media (max-width:570px)
+            left:-63px
+        @media (max-width:410px)
+            background-size: 65%
+    &::after
+        @extend %pseudo-symbols
+        width: 246px
+        height: 202px
+        background: url(../images/single-mob-state.webp)
+        background-repeat: no-repeat
+        background-position: right top
+        right: -95px
+        top: -29px
+        @media (max-width:570px)
+            right:-75px
+        @media (max-width:410px)
+            background-size: 65%
+            right: -55px
+    @media (max-width:740px)
+        display: block
+.single__mob-footer
+    position: relative
+    display: none
+    height: 111px
+    width: 81%
+    @media (max-width:410px)
+        width: 70%
+        height: 62px
+        background-size: auto 100%
+    position: absolute
+    background: url(../images/single-mob-bg-panels.webp)
+    background-repeat: repeat-x
+    bottom: -30px
+    &::before
+        @extend %pseudo-symbols
+        width: 270px
+        height: 170px
+        background: url(../images/single-mob-prev.webp)
+        background-repeat: no-repeat
+        background-position: left top
+        left:-110px
+        top: -23px
+        @media (max-width:410px)
+            width: 181px
+            left: -64px
+            background-size: contain
+    &::after
+        @extend %pseudo-symbols
+        width: 155px
+        height: 149px
+        background: url(../images/single-mob-next.webp)
+        background-repeat: no-repeat
+        background-position: right center
+        right: -69px
+        top: -23px
+        @media (max-width:410px)
+            width: 160px
+            right: -50px
+            background-size: contain
+            background-position: right -26px
+
+    @media (max-width:740px)
+        display: block
 
 // --FOOTER
 footer
@@ -894,8 +1032,10 @@ footer
             
 // MATRIX
 #c 
+    filter: blur(0.7px)
     position: absolute
     top: 0
     left: 0
     width: 100%
     z-index: -1
+    opacity: 0.5

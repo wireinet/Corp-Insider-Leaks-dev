@@ -45,6 +45,12 @@ function libs() {
     .pipe(dest('./public/assets/'))
     .pipe(browserSync.stream());
 }
+// OTHRE IMG
+function otherimg() {
+    return src(['./dev/img/*.gif', './dev/img/fav/*.*'])
+    .pipe(dest('./public/images/'))
+    .pipe(browserSync.stream());
+}
 
 // PUG
 function views() {
@@ -68,7 +74,7 @@ function scripts() {
     }
 
 function images(){
-    return src(['dev/img/**/*.png', 'dev/img/**/*.jpg'])
+    return src(['dev/img/*.png', 'dev/img/*.jpg'])
         .pipe(webp())
         .pipe(dest('public/images/'))
         .pipe(browserSync.stream());
@@ -76,9 +82,11 @@ function images(){
 
 function watchers() {
     watch('dev/*.pug', views);
-    watch('dev/img/**.*', images);
+    watch('dev/libs/**/*.*', libs);
+    watch('dev/img/*.*', images);
     watch('dev/style.sass', style);
     watch(['dev/scripts.js', 'dev/libs/**/*.js'], scripts);
+    watch(['./dev/img/*.gif', './dev/img/fav/*.*'], otherimg);
 }
 
 exports.views = views;
@@ -88,5 +96,6 @@ exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.fonts = copyfonts;
 exports.libs = libs;
+exports.otherimages = otherimg;
 
-exports.default = parallel(views, libs, style, images, watchers, browsersync);
+exports.default = parallel(views, libs, style, images, watchers, otherimg, browsersync);
